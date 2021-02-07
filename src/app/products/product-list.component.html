@@ -1,0 +1,39 @@
+<div class="card">
+  <div class="card-header">
+    {{pageTitle}}
+  </div>
+  
+<div class="card-body">
+  <div class="row">
+    
+    <div class="col-md-12">
+      <input class="form-control mr-sm-2" type="search" autofocus placeholder="Search" aria-label="Search"
+             [(ngModel)]="listFilter" />
+    </div>
+  </div>
+  <div class="row"
+       *ngIf="listFilter">
+    <div class="col-md-6">
+      <h4>Filtered by: {{listFilter}}</h4>
+    </div>
+  </div>
+
+<div  *ngFor="let product of filteredProducts" class="card" style="width: 290px;height: 310px;display: inline-block">
+  <img class="card-img-top" [src]="product.imageUrl" 
+                            [style.width.px]="imageWidth"
+                            [style.margin.px]="imageMargin" 
+                            [style.height.px]="imageHeight"
+                            alt="Card image cap">
+  <div class="card-body">
+    <div>
+        <h5 class="card-title" style="display:inline ;float:inline-start"> {{product.productName}}</h5>
+    
+        <pm-star style="text-align: right; display:inline-block; float:right;" [rating]="product.starRating"></pm-star>
+  </div>
+    
+  <a class="btn btn-info btn-lg btn-block" [routerLink]="[product.id]">Details</a>
+    
+  </div>
+
+</div>
+
